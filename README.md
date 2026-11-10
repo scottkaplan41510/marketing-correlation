@@ -45,6 +45,20 @@ Run both.
 When they disagree by more than about 0.2, you've usually got one outlier
 period or a curve. Worth a look.
 
+## Use it as a skill
+
+Install it as an [Agent Skill](https://agentskills.io) for Claude Code, Cursor,
+Codex and other agents that read skills:
+
+```
+npx skills add scottkaplan41510/marketing-correlation
+```
+
+Then ask your agent something like "do platform conversions and CRM MQLs move
+together?" and point it at your data. The skill is `SKILL.md` at the root of
+this repo; it tells the agent how to shape the CSV, run `correlate.py`, try a
+lag, and explain the result with the right warnings.
+
 ## Run it
 
 Requires Python 3.8+. Nothing to install.
@@ -108,7 +122,7 @@ Go nuts with it.
 - **Any pair:** platform conversions vs CRM MQLs, LLM mentions vs direct and
   branded traffic, email sends vs direct traffic.
 - **Fork it:** schedule it, plug it into your reporting, add more checks.
-  The Claude Code skill in `.claude/skills/` does most of the lifting.
+  The skill in `SKILL.md` does most of the lifting.
 
 ## The honest caveats
 
