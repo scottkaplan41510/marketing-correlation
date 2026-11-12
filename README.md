@@ -29,7 +29,7 @@ You get back a value between 1 and -1.
 - -1 is a perfect negative relationship. One goes up, the other goes down.
 - 0 means no relationship.
 
-My rule of thumb: anything consistently around 0.6 and up and I feel pretty good.
+Rule of thumb: a value that holds around 0.6 or higher is a solid relationship.
 
 ## Pearson or Spearman
 
@@ -51,7 +51,7 @@ Install it as an [Agent Skill](https://agentskills.io) for Claude Code, Cursor,
 Codex and other agents that read skills:
 
 ```
-npx skills add scottkaplan41510/marketing-correlation
+npx skills add redavio/marketing-correlation
 ```
 
 Then ask your agent something like "do platform conversions and CRM MQLs move
@@ -64,7 +64,7 @@ lag, and explain the result with the right warnings.
 Requires Python 3.8+. Nothing to install.
 
 ```
-git clone https://github.com/scottkaplan41510/marketing-correlation
+git clone https://github.com/redavio/marketing-correlation
 cd marketing-correlation
 python3 correlate.py examples/platform_vs_crm.csv
 ```
@@ -85,7 +85,7 @@ for when you want it repeatable.
 
 ## The examples
 
-Both datasets are from the post and are illustrative, not real account data.
+Both datasets are illustrative, not real account data.
 
 **Platform conversions vs CRM MQLs** (`examples/platform_vs_crm.csv`)
 
@@ -94,6 +94,7 @@ platform_conversions  vs  crm_mqls
   Pearson   0.91
   Spearman  0.95
   n        8
+  ! Small sample (8 rows). Treat this as a rough read, not a finding.
 ```
 
 The counts don't match. They move together.
@@ -105,16 +106,17 @@ llm_mentions  vs  direct_sessions
   Pearson   0.75
   Spearman  1.00
   n        8
-  ! Pearson and Spearman differ by 0.25.
+  ! Small sample (8 rows). Treat this as a rough read, not a finding.
+  ! Pearson and Spearman differ by 0.25. Usually one outlier period or a curved relationship. Look at the rows.
 ```
 
 Week 8 is a spike. Pearson gets dragged down by it. Spearman says every week
 still ranks in the same order on both sides. Run it with `--drop 8` and Pearson
-goes to 1.00.
+rounds to 1.00.
 
 ## Make it yours
 
-Go nuts with it.
+Adapt it to your own setup.
 
 - **Any input:** an ad platform export, HubSpot, Salesforce, GA4, a database
   table, an API. If it's numbers by date, it works. Claude Code will wire up
@@ -139,4 +141,4 @@ quick tool to get your head around what relates to what.
 
 ## License
 
-MIT
+MIT. See `LICENSE`.
